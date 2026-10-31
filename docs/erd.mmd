@@ -1,0 +1,66 @@
+erDiagram
+    users ||--o{ applications : "melamar"
+    users ||--o{ bookmarks : "menyimpan"
+    jobs ||--o{ applications : "dilamar"
+    jobs ||--o{ bookmarks : "disimpan"
+    companies ||--o{ jobs : "memiliki"
+    categories ||--o{ jobs : "mengelompokkan"
+
+    users {
+        varchar id PK
+        varchar name
+        varchar email UK
+        text password
+        varchar role
+        timestamptz created_at
+        timestamptz updated_at
+    }
+    companies {
+        varchar id PK
+        varchar name
+        varchar location
+        text description
+        timestamptz created_at
+        timestamptz updated_at
+    }
+    categories {
+        varchar id PK
+        varchar name UK
+        timestamptz created_at
+        timestamptz updated_at
+    }
+    jobs {
+        varchar id PK
+        varchar company_id FK
+        varchar category_id FK
+        varchar title
+        text description
+        varchar job_type
+        varchar experience_level
+        varchar location_type
+        varchar location_city
+        integer salary_min
+        integer salary_max
+        boolean is_salary_visible
+        varchar status
+        timestamptz created_at
+        timestamptz updated_at
+    }
+    applications {
+        varchar id PK
+        varchar user_id FK
+        varchar job_id FK
+        varchar status
+        timestamptz created_at
+        timestamptz updated_at
+    }
+    bookmarks {
+        varchar id PK
+        varchar user_id FK
+        varchar job_id FK
+        timestamptz created_at
+    }
+    authentications {
+        text token UK
+        timestamptz created_at
+    }

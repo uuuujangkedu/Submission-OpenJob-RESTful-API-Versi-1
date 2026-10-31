@@ -1,0 +1,29 @@
+{
+  "name": "openjob-api",
+  "version": "1.0.0",
+  "description": "OpenJob RESTful API V1",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "start:dev": "nodemon src/server.js",
+    "migrate": "node-pg-migrate -j js",
+    "migrate:up": "node-pg-migrate -j js up",
+    "migrate:down": "node-pg-migrate -j js down 999",
+    "db:reset": "npm run migrate:down && npm run migrate:up",
+    "smoke": "node scripts/smoke.js",
+    "test:postman": "newman run \"postman/[271] OpenJob API Test V1.postman_collection.json\" -e \"postman/OpenJob API.postman_environment.json\""
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "express": "^5.1.0",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "node-pg-migrate": "^7.6.1",
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "newman": "^6.2.1",
+    "nodemon": "^3.1.7"
+  }
+}
